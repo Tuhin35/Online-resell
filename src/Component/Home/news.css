@@ -1,0 +1,20 @@
+.news-container{
+    background-image: url('/src/Component/Images/background.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: lightcyan;
+     height: 60vh;
+}
+.img-gradient:after {
+    content:'';
+    position:absolute;
+    left:0; 
+    top:0;
+    width:100%;
+     height:100%;
+    display:inline-block;
+    border-radius: 10px;
+    background: linear-gradient(to top, #151515  0%, rgba(21, 21, 21, 0) 50%); /* FF3.6+ */
+}
