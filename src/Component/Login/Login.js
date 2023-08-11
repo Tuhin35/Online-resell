@@ -154,7 +154,7 @@ export const Login = () => {
                     </button>
                   </div>
                   <p className="text-xs text-gray-600 sm:text-sm">
-                    New to visit this site place <Link to='/signup'>SignUp</Link>
+                    New to visit this site place <Link className="btn btn-primary" to='/signup'>SignUp</Link>
                   </p>
                 </form>
               </div>

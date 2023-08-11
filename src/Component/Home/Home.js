@@ -31,7 +31,7 @@ const Home = () => {
     <hr />
    <Bottom></Bottom>
     
-     <Services></Services>
+    
            <Faq></Faq>
     </div>
   );

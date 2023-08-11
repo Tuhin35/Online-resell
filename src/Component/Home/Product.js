@@ -15,7 +15,7 @@ const Product = () => {
            
            {
             categories.map(category =>
-                <div class="p-8 space-y-3 bg-orange-200 border-2 border-indigo-400 rounded-xl">
+                <div class="p-8 space-y-3 bg-orange-200 border-2 border-indigo-400 rounded-xl" id="about">
                 <span class="inline-block text-indigo-500">
                     <img className=''  src={category.image} alt="" />
                 </span>

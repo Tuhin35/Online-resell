@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <div>
-      <footer className="footer mt-5 p-20 bg-white text-black text-bold">
+      <footer className="footer mt-5 p-20 bg-black text-white text-bold">
         <div>
-        <Link to='/' className="btn btn-primary text-white normal-case text-xl">Travel and chill</Link>
+        <Link to='/' className="btn btn-primary flex justify-between text-white normal-case text-xl"> <img src={logo} class="h-12 mr-5" alt="ORS Logo" /> Online ReSell </Link>
         </div>
         <div>
           <span className="footer-title">Services</span>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
-import { data } from 'autoprefixer';
 import DisplayCard from './DisplayCard';
+import { useParams } from 'react-router-dom';
 
 
 const AllCard = () => {
 
+   const {id} = useParams();
 
 
   const [page, setPage] = useState(0);
@@ -14,19 +14,32 @@ const AllCard = () => {
 
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
+  
   useEffect(() => {
-    fetch(`https://online-resel-server.vercel.app/products?page=${page}&size=${size}`)
+    fetch(`https://online-resel-server-tuhin35.vercel.app/products/category/${id}`)
       .then(res => res.json())
       .then(data => {
         setProducts(data.products)
         setCount(data.count)
       }
       )
-console.log(products)
+
+  }, [id,page,size])
 
 
+  useEffect(() => {
+    fetch(`https://online-resel-server.vercel.app/products?page=${page}&size=${size}`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data.products);
+        setCount(data.count);
+      });
+  }, [page, size]);
+  
+ 
+console.log(products);
 
-  }, [page, size])
+
   const pages = Math.ceil(count / size)
 
   return (

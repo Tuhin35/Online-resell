@@ -204,7 +204,7 @@ export const Signup= () => {
                       </button>
                     </div>
                     <p className="text-xs text-gray-600 sm:text-sm">
-                     You have already a account <Link to='/login'>Login</Link>
+                     You have already a account <Link className="btn btn-primary" to='/login'>Login</Link>
                   {error} </p>
                   </form>
                 </div>
