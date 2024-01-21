@@ -15,14 +15,14 @@ const Product = () => {
            
            {
             categories.map(category =>
-                <div class="p-8 space-y-3 bg-orange-200 border-2 border-indigo-400 rounded-xl" id="about">
+                <div class="p-8 space-y-3 bg-white border-2 border-indigo-400 rounded-xl" id="about">
                 <span class="inline-block text-indigo-500">
-                    <img className=''  src={category.image} alt="" />
+                    <img className='w-80'  src={category.image} alt="" />
                 </span>
 
                 <h1 class="text-2xl font-semibold text-gray-700 capitalize">{category.category}</h1>
 
-                <p class="text-gray-500">
+                <p class="text-gray-800">
                     Research, user experience testing, mockups, and prototypes
                 </p>
                 <NavLink className="bg-white btn btn-white w-40  m-5 text-black hover:bg-green-300" to={`/products/category/${category.c_id}`}

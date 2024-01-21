@@ -16,11 +16,11 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-   
 
 
 
-const  CheckoutForm = ({order}) => {
+
+const CheckoutForm = ({ order }) => {
     console.log(order)
     const [cardError, setCardError] = useState();
     const [success, setSuccess] = useState('');
@@ -28,11 +28,11 @@ const  CheckoutForm = ({order}) => {
     const [transactionId, setTransactionId] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-   const [clientSecret, setClientSecret] = useState("");
-   const navigate = useNavigate()
-   console.log(order)
-   const {_id,Company,price,email,customer,phone} = order;
- 
+    const [clientSecret, setClientSecret] = useState("");
+    const navigate = useNavigate()
+    console.log(order)
+    const { _id, Company, price, email, customer, phone } = order;
+
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         fetch("https://online-resel-server.vercel.app/create-payment-intent", {
@@ -49,22 +49,22 @@ const  CheckoutForm = ({order}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!stripe || !elements) {
-            return ;
+            return;
         }
-         const card = elements.getElement(CardElement)
-        if(card === null){
+        const card = elements.getElement(CardElement)
+        if (card === null) {
             return
         }
 
-        const {error,paymentMethod} = await stripe.createPaymentMethod({
-            type:'card',
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
             card
         });
         if (error) {
-        //    console.log(error) 
-        setCardError(error.message)
+            //    console.log(error) 
+            setCardError(error.message)
         }
-        else{
+        else {
             setCardError('')
         }
         setSuccess('');
@@ -75,7 +75,7 @@ const  CheckoutForm = ({order}) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: Company ,
+                        name: Company,
                         email: email
                     },
                 },
@@ -85,33 +85,33 @@ const  CheckoutForm = ({order}) => {
             setCardError(confirmError.message);
             return;
         }
-    
-        if (paymentIntent.status==="succeeded") {
-          
-                 const payment={
-                    price,
-                    customer,
-                    transactionId: paymentIntent.id,
-                    email,
-                    bookingId: _id,
-                    phone
-                 }
-                 fetch('https://online-resel-server.vercel.app/payments',{
-                    method:'POST',
-                    headers:{
-                        'content-type': 'application/json',
-                        authorization:`bearer ${localStorage.getItem('travelToken')}`
-                    },
-                    body: JSON.stringify(payment)
-                 })
-                 .then(res => res.json())
-                 .then(data => {
+
+        if (paymentIntent.status === "succeeded") {
+
+            const payment = {
+                price,
+                customer,
+                transactionId: paymentIntent.id,
+                email,
+                bookingId: _id,
+                phone
+            }
+            fetch('https://online-resel-server.vercel.app/payments', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('travelToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
                     setSuccess('congrats ! your payment completed')
-                    setTransactionId(paymentIntent.id) ;
+                    setTransactionId(paymentIntent.id);
                     navigate('/orders')
-                 })
+                })
         }
-        setProcessing(false)    
+        setProcessing(false)
     }
 
 
@@ -137,7 +137,7 @@ const  CheckoutForm = ({order}) => {
                 <button
                     className='btn btn-sm mt-4 btn-primary'
                     type="submit"
-                    
+
                     disabled={!stripe || !clientSecret}>
                     Pay
                 </button>

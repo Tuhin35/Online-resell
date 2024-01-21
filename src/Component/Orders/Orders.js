@@ -72,9 +72,9 @@ const Orders = () => {
   }
 
   return (
-    <div>
+    <div className='container bg-white h-screen'>
       <div className="overflow-x-auto w-full">
-        <table className="table w-full text-slate-100 ">
+        <table className="table w-full text-gray-200">
           {/* head */}
           <thead>
             <tr>
